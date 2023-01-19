@@ -9,11 +9,9 @@
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
 body{
-  background-color: #282c34;
   transition: all 1s ease;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
@@ -23,6 +21,5 @@ body{
 
 .container {
   min-height: 100vh;
-  color: white;
 }
 

@@ -3,15 +3,20 @@ import { Navbar, Button, Link, Text } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
 import { Switch, useTheme } from "@nextui-org/react";
 
-const NavbarComponent = () => {
+NavbarComponent.propTypes = {
+  
+}
+
+
+const NavbarComponent = (props) => {
     const { setTheme } = useNextTheme();
     const { isDark, type } = useTheme();
   return (
     <>
       <Navbar isBordered variant="floating">
         <Navbar.Brand>
-          <Text b color="inherit" hideIn="xs">
-            ACME
+          <Text b color="inherit" hideIn="2xl">
+            {props.heading}
           </Text>
         </Navbar.Brand>
         <Navbar.Content hideIn="xs" variant="highlight-rounded">
@@ -42,3 +47,4 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
+

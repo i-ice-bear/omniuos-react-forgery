@@ -2,10 +2,10 @@ import React from "react";
 import "./css/App.css";
 import NavbarComponent from "./components/Router/Navbar";
 
-const App = () => {
+const App = (props) => {
   return (
     <>
-      <NavbarComponent />
+      <NavbarComponent heading={"Text utils"}/>
      </>
   );
 };

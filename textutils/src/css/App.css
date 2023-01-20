@@ -3,23 +3,28 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", poppins;
+  font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-body{
-  transition: all 1s ease;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
+body {
+  box-sizing: border-box;
+  background: none;
+  background-color: none;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  background-color: red;
 }
+.navbar_backdrop {
 
-.container {
-  min-height: 100vh;
+  background: rgba(255, 255, 255, .7);
+  backdrop-filter: blur("10px");
 }
-

@@ -1,13 +1,17 @@
 import React from "react";
 import "./css/App.css";
-import NavbarComponent from "./components/Router/Navbar";
+import NavbarComponent from "./source/router/Navbar";
+import SwitchComponent from "./source/components/Switch";
+import { Navbar } from "@nextui-org/react";
+import HomePage from "./source/content/Home";
 
-const App = (props) => {
+const AppComponent = () => {
   return (
     <>
-      <NavbarComponent heading={"Text utils"}/>
-     </>
+      <NavbarComponent />
+      <HomePage />
+    </>
   );
 };
 
-export default App;
+export default AppComponent;

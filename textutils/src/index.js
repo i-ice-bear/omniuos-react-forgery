@@ -17,7 +17,6 @@ const darkTheme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <NextThemesProvider
-  defaultTheme="system"
     attribute="class"
     value={{
       light: lightTheme.className,

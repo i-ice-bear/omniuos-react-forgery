@@ -1,4 +1,5 @@
 import { Box } from "./Box.js";
+import HomePage from "../content/Home.js";
 
 export const Layout = ({ children }) => (
   <Box
@@ -7,5 +8,6 @@ export const Layout = ({ children }) => (
     }}
   >
     {children}
+    <HomePage headingContent={"Textutils"}/>
   </Box>
 );

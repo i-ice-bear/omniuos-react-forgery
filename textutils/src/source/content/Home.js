@@ -5,14 +5,25 @@ import { Container } from "@nextui-org/react";
 const HomePage = (props) => {
   return (
     <>
-      <Container css={{background:"inherit"}} class="mb-3 p-5">
-        <label for="" class="form-label"></label>
-        <textarea class="form-control" name="" id="" rows="3"></textarea>
-      </Container>
+      <div className="container my-5">
+        <h1>Text analysis by {props.headingContent}</h1>{" "}
+        <div className="mb-3">
+          <label for="" className="form-label"></label>
+          <textarea
+            className="form-control"
+            name=""
+            id=""
+            rows="3"
+            placeholder="Enter your text"
+          ></textarea>
+        </div>
+      </div>
     </>
   );
 };
 
-HomePage.propTypes = {};
+HomePage.propTypes = {
+  headingContent : PropTypes.string
+};
 
 export default HomePage;

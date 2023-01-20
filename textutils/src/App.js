@@ -8,8 +8,7 @@ import HomePage from "./source/content/Home";
 const AppComponent = () => {
   return (
     <>
-      <NavbarComponent />
-      <HomePage />
+      <NavbarComponent heading={"Textutils"} />
     </>
   );
 };

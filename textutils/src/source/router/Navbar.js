@@ -24,7 +24,7 @@ const NavbarComponent = (props) => {
       <Layout>
         <Navbar
           isBordered
-          variant="sticky"
+          variant={"sticky"}
           
         >
           <Navbar.Toggle showIn="xs" />
@@ -37,7 +37,7 @@ const NavbarComponent = (props) => {
           >
             <AcmeLogo />
             <Text b color="inherit" hideIn="xs">
-              ACME
+              {props.heading}
             </Text>
           </Navbar.Brand>
           <Navbar.Content
@@ -106,7 +106,6 @@ const NavbarComponent = (props) => {
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Content>
-          <SwitchComponent />
           <Navbar.Collapse>
             {collapseItems.map((item, index) => (
               <Navbar.CollapseItem

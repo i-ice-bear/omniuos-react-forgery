@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container } from "@nextui-org/react";
 
 const HomePage = (props) => {
   return (
@@ -8,7 +7,7 @@ const HomePage = (props) => {
       <div className="container my-5">
         <h1>Text analysis by {props.headingContent}</h1>{" "}
         <div className="mb-3">
-          <label for="" className="form-label"></label>
+          <label htmlFor="" className="form-label"></label>
           <textarea
             className="form-control"
             name=""

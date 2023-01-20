@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
 import { Layout } from "./Layout.js";
 import { AcmeLogo } from "../icons/AcmeLogo.js";
-import SwitchComponent from "../components/Switch.js";
 
 const NavbarComponent = (props) => {
   const collapseItems = [
@@ -19,14 +18,43 @@ const NavbarComponent = (props) => {
     "Log Out",
   ];
 
+  const NavigationLinks = [
+    {
+      name: props.home,
+      isActive: true,
+      href: "./",
+      index: Math.floor(Math.random() * 10),
+    },
+    {
+      name: "Contact",
+      isActive: false,
+      href: "./",
+      index: Math.floor(Math.random() * 10),
+    },
+    {
+      name: "About",
+      isActive: false,
+      href: "./",
+      index: Math.floor(Math.random() * 10),
+    },
+    {
+      name: "Paper",
+      isActive: false,
+      href: "./",
+      index: Math.floor(Math.random() * 10),
+    },
+    {
+      name: "Forums",
+      isActive: false,
+      href: "./",
+      index: Math.floor(Math.random() * 10),
+    },
+  ];
+
   return (
     <>
       <Layout>
-        <Navbar
-          isBordered
-          variant={"sticky"}
-          
-        >
+        <Navbar isBordered variant={"sticky"}>
           <Navbar.Toggle showIn="xs" />
           <Navbar.Brand
             css={{
@@ -46,12 +74,17 @@ const NavbarComponent = (props) => {
             hideIn="xs"
             variant="highlight-rounded"
           >
-            <Navbar.Link href="#">Features</Navbar.Link>
-            <Navbar.Link isActive href="#">
-              Customers
-            </Navbar.Link>
-            <Navbar.Link href="#">Pricing</Navbar.Link>
-            <Navbar.Link href="#">Company</Navbar.Link>
+            {NavigationLinks.map((item) => {
+              return (
+                <>
+                  <div key={item.index}>
+                    <Navbar.Link isActive={item.isActive}>
+                      {item.name}
+                    </Navbar.Link>
+                  </div>
+                </>
+              );
+            })}
           </Navbar.Content>
           <Navbar.Content
             css={{
@@ -134,6 +167,13 @@ const NavbarComponent = (props) => {
   );
 };
 
-NavbarComponent.propTypes = {};
+NavbarComponent.propTypes = {
+  heading: PropTypes.string.isRequired,
+  home: PropTypes.string.isRequired,
+};
+NavbarComponent.defaultProps = {
+  heading: "Pass heading here",
+  home: "Pass links here",
+};
 
 export default NavbarComponent;

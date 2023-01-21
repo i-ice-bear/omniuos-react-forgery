@@ -13,6 +13,7 @@
 }
 
 body {
+
   box-sizing: border-box;
   background: none;
   background-color: none;
@@ -23,8 +24,16 @@ body {
   -o-transition: all 0.3s ease;
   background-color: red;
 }
-.navbar_backdrop {
 
-  background: rgba(255, 255, 255, .7);
+.form-control:hover {
+  margin-top: -1rem;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.navbar_backdrop {
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur("10px");
 }

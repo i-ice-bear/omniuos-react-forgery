@@ -12,7 +12,6 @@ const AppComponent = () => {
     <>
       <NavbarComponent heading="Textutils" home={"Home"} />
       <div className="container">
-        <Practice name="Name" />
       </div>
     </>
   );

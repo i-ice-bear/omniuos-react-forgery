@@ -6,29 +6,33 @@ import { FaBug, FaShare, FaWatchmanMonitoring } from "react-icons/fa";
 
 const HomePage = (props) => {
   const [changeText, setChangeText] = React.useState("");
-  const [wordLength, setWordLength] = React.useState(0)
+  const [wordLength, setWordLength] = React.useState(0);
   const upperCase = (e) => {
     setChangeText(changeText.toUpperCase());
   };
   const handleOnChange = (event) => {
-    setChangeText(event.target.value)
+    setChangeText(event.target.value);
   };
-  
+
   const wordCounts = () => {
     let counts = {};
     let word = changeText.split(" ");
     for (let words in word) {
       if (words.length > 0) {
         if (!(words in counts)) {
-          setWordLength(wordLength[counts] = 0)
+          //TODO: setWordLength(wordLength[counts] = 0)
         } else {
-          setWordLength(wordLength[counts] += 1)
+          //TODO: setWordLength(wordLength[counts] += 1)
         }
       }
     }
-    return counts
+    return counts;
   };
-  
+  const handleClearCanvas =() =>{
+    let newText = " "
+    setChangeText(newText)
+  }
+
   return (
     <>
       <div className="container my-5">
@@ -51,7 +55,7 @@ const HomePage = (props) => {
                 <Button size={"sm"} auto>
                   Convert lowercase
                 </Button>
-                <Button size={"sm"} auto>
+                <Button size={"sm"} auto onPress={handleClearCanvas}>
                   Clear canvas
                 </Button>
               </Button.Group>
@@ -59,7 +63,7 @@ const HomePage = (props) => {
           </div>
           <div className="col-md-5">
             <Card css={{ mw: "100%" }} isHoverable>
-              <Card.Header bordered>
+              <Card.Header>
                 <h5>Info of your text</h5>
               </Card.Header>
               <Card.Divider />
@@ -70,14 +74,24 @@ const HomePage = (props) => {
                 <h6 className="fw-normal">
                   Words are around {changeText.split(" ").length}
                 </h6>
+                <h6 className="fw-normal">
+
+                </h6>
               </Card.Body>
               <Card.Divider />
               <Card.Footer>
                 <Button color={"error"} auto size="sm">
-                  Have any problem <FaBug className="mx-2" />
+                  Have any problem
+                  <span className="mx-2">
+                    <FaBug />
+                  </span>
                 </Button>
                 <Button auto size="sm" className="mx-3">
-                  Share your {props.headingContent} <FaShare className="mx-1" />
+                  Share your {props.headingContent}{" "}
+                  <span className="mx-1">
+                    {" "}
+                    <FaShare />
+                  </span>
                 </Button>
               </Card.Footer>
             </Card>

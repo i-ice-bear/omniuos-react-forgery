@@ -1,15 +1,27 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import { Card, Textarea } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-import { FaBug, FaShare, FaWatchmanMonitoring } from "react-icons/fa";
+import {
+  FaBackspace,
+  FaBug,
+  FaClipboard,
+  FaHandScissors,
+  FaItalic,
+  FaShare,
+  FaSortAlphaDown,
+  FaSortAlphaUp,
+} from "react-icons/fa";
 
 const HomePage = (props) => {
   const [changeText, setChangeText] = React.useState("");
-  const [wordLength, setWordLength] = React.useState(0);
+
+  const calculateReadTmie = () => {};
+
   const upperCase = (e) => {
     setChangeText(changeText.toUpperCase());
   };
+
   const handleOnChange = (event) => {
     setChangeText(event.target.value);
   };
@@ -28,10 +40,24 @@ const HomePage = (props) => {
     }
     return counts;
   };
-  const handleClearCanvas =() =>{
-    let newText = " "
-    setChangeText(newText)
-  }
+
+  const handleCopyClip = () => {
+    navigator.clipboard.writeText(changeText);
+  };
+
+  const handleClearCanvas = () => {
+    let newText = " ";
+    setChangeText(newText);
+  };
+
+  const handleLowerCase = () => {
+    setChangeText(changeText.toLowerCase());
+  };
+
+  const handleExtraSpaces = () => {
+    var text = changeText.split(/[ ]+/);
+    setChangeText(text.join(" "));
+  };
 
   return (
     <>
@@ -50,13 +76,28 @@ const HomePage = (props) => {
             <div className="buttons my-3">
               <Button.Group color="secondary" rounded>
                 <Button size={"sm"} auto onPress={upperCase}>
-                  Convert uppercase
+                  Convert uppercase <FaSortAlphaUp />
                 </Button>
-                <Button size={"sm"} auto>
-                  Convert lowercase
+                <Button size={"sm"} auto onPress={handleLowerCase}>
+                  Convert lowercase <FaSortAlphaDown />
                 </Button>
                 <Button size={"sm"} auto onPress={handleClearCanvas}>
-                  Clear canvas
+                  Clear canvas <FaHandScissors />
+                </Button>
+              </Button.Group>
+              <Button.Group rounded color="primary">
+                <Button size={"sm"} auto onPress={handleCopyClip}>
+                  Copy to clipboard{" "}
+                  <span className="mx-1">
+                    <FaClipboard />
+                  </span>
+                </Button>
+
+                <Button size={"sm"} auto onPress={handleExtraSpaces}>
+                  Remove extra spaces
+                  <span className="mx-1">
+                    <FaBackspace />
+                  </span>
                 </Button>
               </Button.Group>
             </div>
@@ -74,8 +115,8 @@ const HomePage = (props) => {
                 <h6 className="fw-normal">
                   Words are around {changeText.split(" ").length}
                 </h6>
-                <h6 className="fw-normal">
-
+                <h6 className="fw-normal" onChange={calculateReadTmie}>
+                  {0.008 * changeText.split(" ").length} minutes to read
                 </h6>
               </Card.Body>
               <Card.Divider />

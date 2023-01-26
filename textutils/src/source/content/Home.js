@@ -14,6 +14,7 @@ import {
 import { Slide } from "@mui/material";
 import SnackComponent from "../components/Snackbar/Snackbar";
 import ModalCallOutComponent from "../components/ModalBox";
+import NavbarComponent from "../router/Navbar";
 
 function TransitionUp(props) {
   return <Slide {...props} direction="up" />;

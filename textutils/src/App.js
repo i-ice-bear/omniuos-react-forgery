@@ -4,13 +4,14 @@ import NavbarComponent from "./source/router/Navbar";
 import HomePage from "./source/content/Home";
 import Practice from "./source/content/Practice";
 import SnackComponent from "./source/components/Snackbar/Snackbar";
-// import SwitchComponent from "./source/components/Switch";
-// import { Navbar } from "@nextui-org/react";
+import NewsPage from "./source/content/NewsPage";
+import { Router, Routes, Route } from "react-router-dom";
 
 const AppComponent = () => {
   return (
     <>
-      <NavbarComponent heading="Textutils" home={"Home"} />
+        <NavbarComponent heading="Textutils" home={"Home"} />
+        
     </>
   );
 };

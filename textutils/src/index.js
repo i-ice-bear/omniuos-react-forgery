@@ -2,9 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./css/index.css";
 import App from "./App";
+import NavbarComponent from "./source/router/Navbar";
 import reportWebVitals from "./reportWebVitals";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import HomePage from "./source/content/Home";
+import NewsPage from "./source/content/NewsPage";
 
 const lightTheme = createTheme({
   type: "light",
@@ -13,6 +17,25 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   type: "dark",
 });
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: [
+      <NavbarComponent heading="Textutils" home={"Home"} />,
+      <HomePage headingContent="Textutils" />,
+    ],
+    children: [
+      {
+        path: "newsApp",
+        element: [
+          <NavbarComponent heading="Textutils" home={"Home"} />,
+          <NewsPage />,
+        ],
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,9 +47,11 @@ root.render(
     }}
   >
     <NextUIProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <RouterProvider router={router}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </RouterProvider>
     </NextUIProvider>
   </NextThemesProvider>
 );

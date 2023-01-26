@@ -13,9 +13,34 @@ import {
 } from "react-icons/fa";
 import { Slide } from "@mui/material";
 import SnackComponent from "../components/Snackbar/Snackbar";
+import ModalCallOutComponent from "../components/ModalBox";
 
 function TransitionUp(props) {
   return <Slide {...props} direction="up" />;
+}
+
+function ModalCallOut() {
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
+  return (
+    <>
+      <Button color={"error"} auto size="sm" onPress={handler}>
+        Have any problem
+        <span className="mx-2">
+          <FaBug />
+        </span>
+      </Button>
+      <ModalCallOutComponent
+        visible={visible}
+        handler={handler}
+        closeHandler={closeHandler}
+      />
+    </>
+  );
 }
 
 const HomePage = (props) => {
@@ -176,12 +201,7 @@ const HomePage = (props) => {
               </Card.Body>
               <Card.Divider />
               <Card.Footer>
-                <Button color={"error"} auto size="sm">
-                  Have any problem
-                  <span className="mx-2">
-                    <FaBug />
-                  </span>
-                </Button>
+                <ModalCallOut />
                 <Button auto size="sm" className="mx-3">
                   Share your {props.headingContent}{" "}
                   <span className="mx-1">

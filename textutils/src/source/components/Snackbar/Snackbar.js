@@ -16,7 +16,7 @@ export default function SnackComponent(props) {
           message={props.message}
           key={props.transition ? props.transition.name : ""}
         >
-          <Alert  onClose={props.handleClose} severity={props.type}>
+          <Alert  onClose={props.handleClose} severity={props.type} type="filled">
             {props.message}
           </Alert>
         </Snackbar>

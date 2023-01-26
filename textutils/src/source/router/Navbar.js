@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
+import { Navbar, Text, Avatar, Dropdown } from "@nextui-org/react";
 import { Layout } from "./Layout.js";
 import { AcmeLogo } from "../icons/AcmeLogo.js";
 import SwitchComponent from "../components/Switch.js";
+import { Link } from "react-router-dom";
 
 const NavbarComponent = (props) => {
   const collapseItems = [
@@ -19,36 +20,35 @@ const NavbarComponent = (props) => {
     "Log Out",
   ];
 
-
   const NavigationLinks = [
     {
       name: props.home,
       isActive: true,
-      href: "./",
+      href: "/",
       index: Math.floor(Math.random() * 10),
     },
     {
-      name: "Contact",
+      name: "News",
       isActive: false,
-      href: "./",
+      href: "/newsApp",
       index: Math.floor(Math.random() * 10),
     },
     {
       name: "About",
       isActive: false,
-      href: "./",
+      href: "/",
       index: Math.floor(Math.random() * 10),
     },
     {
       name: "Paper",
       isActive: false,
-      href: "./",
+      href: "/",
       index: Math.floor(Math.random() * 10),
     },
     {
       name: "Forums",
       isActive: false,
-      href: "./",
+      href: "/",
       index: Math.floor(Math.random() * 10),
     },
   ];
@@ -56,7 +56,15 @@ const NavbarComponent = (props) => {
   return (
     <>
       <Layout>
-        <Navbar isBordered variant={"sticky"}>
+        <Navbar
+          isBordered
+          style={{
+            position: "fixed",
+            left: 0,
+            width: "100%",
+            bottom: 0,
+          }}
+        >
           <Navbar.Toggle showIn="xs" />
           <Navbar.Brand
             css={{
@@ -76,13 +84,13 @@ const NavbarComponent = (props) => {
             hideIn="xs"
             variant="highlight-rounded"
           >
-            {NavigationLinks.map((item) => {
+            {NavigationLinks.map(({item}) => {
               return (
                 <>
                   <div key={item.index}>
-                    <Navbar.Link isActive={item.isActive}>
+                    <Link to={item.href} >
                       {item.name}
-                    </Navbar.Link>
+                    </Link>
                   </div>
                 </>
               );
@@ -96,7 +104,7 @@ const NavbarComponent = (props) => {
               },
             }}
           >
-            <Dropdown placement="bottom-right">
+            <Dropdown placement="top-right">
               <Navbar.Item>
                 <Dropdown.Trigger>
                   <Avatar
@@ -141,7 +149,14 @@ const NavbarComponent = (props) => {
               </Dropdown.Menu>
             </Dropdown>
           </Navbar.Content>
-          <Navbar.Collapse>
+          <Navbar.Collapse
+            style={{
+              position: "fixed",
+              top: 0,
+              width: "100%",
+              left: 0,
+            }}
+          >
             {collapseItems.map((item, index) => (
               <Navbar.CollapseItem
                 key={item}
@@ -156,7 +171,7 @@ const NavbarComponent = (props) => {
                   css={{
                     minWidth: "100%",
                   }}
-                  href="#"
+                  to={"/"}
                 >
                   {item}
                 </Link>

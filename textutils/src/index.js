@@ -21,19 +21,11 @@ const darkTheme = createTheme({
 const router = createBrowserRouter([
   {
     path: "/",
-    element: [
-      <NavbarComponent heading="Textutils" home={"Home"} />,
-      <HomePage headingContent="Textutils" />,
-    ],
-    children: [
-      {
-        path: "newsApp",
-        element: [
-          <NavbarComponent heading="Textutils" home={"Home"} />,
-          <NewsPage />,
-        ],
-      },
-    ],
+    element: [<HomePage headingContent="Textutils" />],
+  },
+  {
+    path: "/newsApp",
+    element: <NewsPage />,
   },
 ]);
 
@@ -47,11 +39,10 @@ root.render(
     }}
   >
     <NextUIProvider>
-      <RouterProvider router={router}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </RouterProvider>
+      <RouterProvider router={router} />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </NextUIProvider>
   </NextThemesProvider>
 );

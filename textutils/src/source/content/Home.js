@@ -7,20 +7,46 @@ import {
   FaBug,
   FaClipboard,
   FaHandScissors,
-  FaItalic,
   FaShare,
   FaSortAlphaDown,
   FaSortAlphaUp,
 } from "react-icons/fa";
+import { Slide } from "@mui/material";
+import SnackComponent from "../components/Snackbar/Snackbar";
+
+function TransitionUp(props) {
+  return <Slide {...props} direction="up" />;
+}
 
 const HomePage = (props) => {
   const [changeText, setChangeText] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
 
-  const calculateReadTmie = () => {};
+  const handleClick = (Transition) => () => {
+    setTransition(() => Transition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [alertMessage, setAlertMessage] = React.useState("");
+
+  const showAlert = (message, type) => {
+    setAlertMessage({
+      message: message,
+      type: type,
+    });
+  };
 
   const upperCase = (e) => {
     setChangeText(changeText.toUpperCase());
+    showAlert("Changed to uppercase", "success");
   };
+
+  const calculateReadTmie = () => {};
 
   const handleOnChange = (event) => {
     setChangeText(event.target.value);
@@ -43,25 +69,29 @@ const HomePage = (props) => {
 
   const handleCopyClip = () => {
     navigator.clipboard.writeText(changeText);
+    showAlert("Copied to clipboard", "success");
   };
 
   const handleClearCanvas = () => {
     let newText = " ";
+    showAlert("Cleared the canvas", "success");
     setChangeText(newText);
   };
 
   const handleLowerCase = () => {
+    showAlert("Changed to lowercase", "success");
     setChangeText(changeText.toLowerCase());
   };
 
   const handleExtraSpaces = () => {
     var text = changeText.split(/[ ]+/);
+    showAlert("Cleared extra spaces", "success");
     setChangeText(text.join(" "));
   };
 
   return (
     <>
-      <div className="container my-5">
+      <div className="container bg-none my-5">
         <h1>Text analysis by {props.headingContent}</h1>{" "}
         <div className="row my-5">
           <div className="col-md-7 mb-3">
@@ -75,25 +105,50 @@ const HomePage = (props) => {
             ></Textarea>
             <div className="buttons my-3">
               <Button.Group color="secondary" rounded>
-                <Button size={"sm"} auto onPress={upperCase}>
+                <Button
+                  size={"sm"}
+                  auto
+                  onPress={upperCase}
+                  onClick={handleClick(TransitionUp)}
+                >
                   Convert uppercase <FaSortAlphaUp />
                 </Button>
-                <Button size={"sm"} auto onPress={handleLowerCase}>
+                <Button
+                  size={"sm"}
+                  auto
+                  onPress={handleLowerCase}
+                  onClick={handleClick(TransitionUp)}
+                >
                   Convert lowercase <FaSortAlphaDown />
                 </Button>
-                <Button size={"sm"} auto onPress={handleClearCanvas}>
+                <Button
+                  onClick={handleClick(TransitionUp)}
+                  size={"sm"}
+                  auto
+                  onPress={handleClearCanvas}
+                >
                   Clear canvas <FaHandScissors />
                 </Button>
               </Button.Group>
               <Button.Group rounded color="primary">
-                <Button size={"sm"} auto onPress={handleCopyClip}>
+                <Button
+                  size={"sm"}
+                  auto
+                  onClick={handleClick(TransitionUp)}
+                  onPress={handleCopyClip}
+                >
                   Copy to clipboard{" "}
                   <span className="mx-1">
                     <FaClipboard />
                   </span>
                 </Button>
 
-                <Button size={"sm"} auto onPress={handleExtraSpaces}>
+                <Button
+                  size={"sm"}
+                  auto
+                  onPress={handleExtraSpaces}
+                  onClick={handleClick(TransitionUp)}
+                >
                   Remove extra spaces
                   <span className="mx-1">
                     <FaBackspace />
@@ -139,6 +194,15 @@ const HomePage = (props) => {
           </div>
         </div>
       </div>
+      <SnackComponent
+        handleClick={handleClick(TransitionUp)}
+        open={open}
+        handleClose={handleClose}
+        transition={transition}
+        type={"success"}
+        variant={alertMessage.variant}
+        message={alertMessage.message}
+      />
     </>
   );
 };

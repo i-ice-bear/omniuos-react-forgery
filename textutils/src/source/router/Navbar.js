@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
 import { Layout } from "./Layout.js";
 import { AcmeLogo } from "../icons/AcmeLogo.js";
+import SwitchComponent from "../components/Switch.js";
 
 const NavbarComponent = (props) => {
   const collapseItems = [
@@ -17,6 +18,7 @@ const NavbarComponent = (props) => {
     "Help & Feedback",
     "Log Out",
   ];
+
 
   const NavigationLinks = [
     {

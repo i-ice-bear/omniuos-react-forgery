@@ -1,36 +1,26 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import Slide, { SlideProps } from "@mui/material/Slide";
+import Slide from "@mui/material/Slide";
+import { Stack } from "@mui/system";
+import { Alert } from "@mui/material";
 
-function TransitionLeft(props) {
-  return <Slide {...props} direction="left" />;
-}
-
-const SnackBarComponents = () => {
-  const [open, setOpen] = React.useState(false);
-  const [transition, setTransition] = React.useState(undefined);
-
-  const handleClick = (Transition) => () => {
-    setTransition(() => Transition);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function SnackComponent(props) {
+  
   return (
-    <>
-      <Snackbar
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={transition}
-        message="I love snacks"
-        key={transition ? transition.name : ""}
-      />
-    </>
+    <div>
+      <Stack sx={{ maxWidth: 3000 }} >
+        <Snackbar
+          open={props.open}
+          onClose={props.handleClose}
+          TransitionComponent={props.transition}
+          message={props.message}
+          key={props.transition ? props.transition.name : ""}
+        >
+          <Alert  onClose={props.handleClose} severity={props.type}>
+            {props.message}
+          </Alert>
+        </Snackbar>
+      </Stack>
+    </div>
   );
-};
-
-export default SnackBarComponents;
+}
